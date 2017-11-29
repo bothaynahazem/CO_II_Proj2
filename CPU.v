@@ -4,7 +4,7 @@ module CPU (clock);
 parameter LW = 6'b100011, SW= 6'b101011, BEQ= 6'b000100, NOP= 32'b100000, ALUop = 6'b0;
 input clock;
 
-reg[31:0] PC, Regs[0:31], IMemory[0:1023], DMemory[0:1023], // separate memories  --> 1 KiloWord = 4 KiloBytes
+reg[31:0] PC=0, Regs[0:31], IMemory[0:1023], DMemory[0:1023], // separate memories  --> 1 KiloWord = 4 KiloBytes
 
 IFIDIR, //1st stage 
 IDEXA, IDEXB, IDEXIR, //2nd stage
@@ -35,16 +35,16 @@ assign IDEXop = IDEXIR[31:26]; // the opcode
 assign Ain = IDEXA;
 assign Bin = IDEXB;
 
-8reg [5:0] i; //used to initialize registers
+reg [5:0] i; //used to initialize registers
 
-initial begin
+//initial begin
 
-PC = 0;
-IFIDIR = NOP; IDEXIR = NOP; EXMEMIR = NOP; MEMWBIR = NOP; // put no-ops in pipeline registers
+//PC = 0;
+//IFIDIR = NOP; IDEXIR = NOP; EXMEMIR = NOP; MEMWBIR = NOP; // put no-ops in pipeline registers
 
-for (i=0;i<=31;i=i+1) Regs[i] = i; //initialize registers--just so they aren?t cares
+//for (i=0;i<=31;i=i+1) Regs[i] = i; //initialize registers--just so they aren?t cares
 
-end
+//end
 
 always @ (posedge clock) begin
 // ALL these actions happen every pipe stage and with the use of <= they happen in parallel
