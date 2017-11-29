@@ -1,3 +1,4 @@
+//this is a test
 //ALU Operations (4 bits):
 //0000 Add
 //0001 Sub	
@@ -16,8 +17,8 @@
 
 //ALU outputs --> Result(32 bits) & Overflow (1 bit --> same as a flag ) 
 
-module ALU(A,B,Mode,OpCode,Result,Overflow,Shift_amt);
-
+module ALU(A,B,Mode,OpCode,Result,Overflow,Shift_amt,zero_flag);
+output zero_flag;
 input wire [31:0] A,B;
 input wire [1:0] Mode;
 input wire [3:0] OpCode;
@@ -58,6 +59,8 @@ assign Result =(OpCode==4'b0000)&&(Mode==0)?(A+B):
 ((OpCode==4'b1000) &&(Mode==1'b1)&&(A[31]!=B[31])&& (B[31]==0) )? (32'd1):
 
 (32'd0);
+assign zero_flag = (OpCode==4'b0001)&&(A-B==0)? 1:
+0;
 
 /*inline cdn for overflow in case of addition(signed & unsigned) or subtraction (signed only)*/
 assign Overflow = ((Mode==1'b1)&&(OpCode==4'b0000)&&(A[31]==B[31])&&(Result[31]==~A[31]))? 1'b1:
@@ -66,7 +69,7 @@ assign Overflow = ((Mode==1'b1)&&(OpCode==4'b0000)&&(A[31]==B[31])&&(Result[31]=
 
 
 endmodule
-
+/*
 module ALU_TestBench();
 reg [31:0] in1,in2;
 reg [1:0] mode;
@@ -78,3 +81,4 @@ wire [1:0] overflow;
 ALU first_one(in1,in2,mode,opcode,output1,overflow,shift_amt);
 
 endmodule
+*/
