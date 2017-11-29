@@ -20,8 +20,9 @@ module ALU(A,B,Mode,OpCode,Result,Overflow,Shift_amt);
 
 input wire [31:0] A,B;
 input wire [1:0] Mode;
-input wire [3:0] OpCode;
-input wire [4:0] Shift_amt;
+input wire [3:0] OpCode; //coming from the ALU control unit
+//input wire [4:0] Shift_amt;
+input wire [4:0] Shift_amtdddddd;
 output wire [31:0] Result;
 output wire [1:0] Overflow;
 wire [31:0] B_negated;
