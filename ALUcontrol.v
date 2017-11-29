@@ -16,7 +16,7 @@ begin
 assign OpCode=4'b0001;
 end
 
-if (ALUOp==2'b10) //funct ---> R-format
+if (ALUOp==2'b10) //funct ---> R-format//
 begin
 if
 begin
