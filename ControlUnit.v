@@ -1,4 +1,4 @@
-module ContolUnit (clk,OpCode, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite);
+module ControlUnit (clk,OpCode, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite);
 
 input wire [5:0] OpCode;
 input clk;
