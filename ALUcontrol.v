@@ -18,8 +18,13 @@ end
 
 if (ALUOp==2'b10) //funct ---> R-format
 begin
-if
-begin
+assign OpCode=(Instruction==6'b100000)?4'b0010:
+
+(Instruction==6'b100010)?4'b0110:
+(Instruction==6'b100100)?4'b0000:
+(Instruction==6'b100101)?4'b0001:
+(Instruction==6'b101010)?4'b0111:
+4'bxxxx;
 end
 
 end
