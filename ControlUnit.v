@@ -14,53 +14,53 @@ output wire RegWrite;
 //R instruction
 if (OpCode==6'b000000)
 begin
-RegDst=1'b1;
-Branch=1'b0;
-MemRead=1'b0;
-MemtoReg=1'b0;
-ALUOp=2'b10;
-MemWrite=1'b0;
-ALUSrc=1'b0;
-RegWrite=1'b1;
+assign RegDst=1'b1;
+assign Branch=1'b0;
+assign MemRead=1'b0;
+assign MemtoReg=1'b0;
+assign ALUOp=2'b10;
+assign MemWrite=1'b0;
+assign ALUSrc=1'b0;
+assign RegWrite=1'b1;
 end
 
 //lw instruction
 if (OpCode==6'b100011)
 begin
-RegDst=1'b0;
-Branch=1'b0;
-MemRead=1'b1;
-MemtoReg=1'b1;
-ALUOp=2'b00;
-MemWrite=1'b0;
-ALUSrc=1'b1;
-RegWrite=1'b1;
+assign RegDst=1'b0;
+assign Branch=1'b0;
+assign MemRead=1'b1;
+assign MemtoReg=1'b1;
+assign ALUOp=2'b00;
+assign MemWrite=1'b0;
+assign ALUSrc=1'b1;
+assign RegWrite=1'b1;
 end
 
 //sw instruction
 if (OpCode==6'b101011)
 begin
-RegDst=1'bx;
-Branch=1'b0;
-MemRead=1'b0;
-MemtoReg=1'bx;
-ALUOp=2'b00;
-MemWrite=1'b1;
-ALUSrc=1'b1;
-RegWrite=1'b0;
+assign RegDst=1'bx;
+assign Branch=1'b0;
+assign MemRead=1'b0;
+assign MemtoReg=1'bx;
+assign ALUOp=2'b00;
+assign MemWrite=1'b1;
+assign ALUSrc=1'b1;
+assign RegWrite=1'b0;
 end
 
 //beq instruction
 if (OpCode==6'b000100)
 begin
-RegDst=1'bx;
-Branch=1'b1;
-MemRead=1'b0;
-MemtoReg=1'bx;
-ALUOp=2'b01;
-MemWrite=1'b0;
-ALUSrc=1'b0;
-RegWrite=1'b0;
+assign RegDst=1'bx;
+assign Branch=1'b1;
+assign MemRead=1'b0;
+assign MemtoReg=1'bx;
+assign ALUOp=2'b01;
+assign MemWrite=1'b0;
+assign ALUSrc=1'b0;
+assign RegWrite=1'b0;
 end
 
 endmodule
