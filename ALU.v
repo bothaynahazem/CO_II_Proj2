@@ -1,4 +1,3 @@
-//this is a test
 //ALU Operations (4 bits):
 
 /*first project*/
@@ -46,13 +45,6 @@ A_signed<=A;
 B_signed<=B;
 end
 
-//0000 and
-//0001 or
-//0010 add
-//0110 sub
-//0111 slt
-//1100 nor
-
 /*inline cdns for all inputs and what they should result*/
 assign Result =(OpCode==4'b0010)&&(Mode==0)?(A+B):
 (OpCode==4'b0010)&&(Mode==1)?(A_signed+B_signed):
@@ -60,7 +52,7 @@ assign Result =(OpCode==4'b0010)&&(Mode==0)?(A+B):
 (OpCode==4'b0110)&&(Mode==1)?(A_signed-B_signed):
 (OpCode==4'b0000)?(A&B):
 (OpCode==4'b0001)?(A|B):
-(OpCode==4'b0001)?(A~|B):
+//(OpCode==4'b0001)?(A~|B):
 //(OpCode==4'b0100)?(A<<Shift_amt):
 //(OpCode==4'b0101)?(A>>Shift_amt):
 //(OpCode==4'b0110)?$signed(($signed (A)>>>Shift_amt)):
