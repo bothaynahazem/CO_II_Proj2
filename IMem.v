@@ -4,7 +4,7 @@ initial
 begin
 $readmemb("input.txt",IMemory);
 end
-always@(pc >=0)
+always@(posedge clk)
 begin
 instruction<=IMemory[pc>>2];
 end

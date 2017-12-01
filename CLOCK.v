@@ -1,13 +1,8 @@
-module clk(clk);
-output reg clk=0;
-reg [31:0] invertings;
-integer index;
-always@(1)
+`timescale 100s/1s
+module clk( myclk);
+output reg myclk=1;
+always
 begin
-for(index=0;index<32;index=index+1)
-begin
-invertings[index]=~clk;
-end
-clk=invertings[31];
+#1 myclk=~myclk;
 end
 endmodule
