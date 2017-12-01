@@ -40,7 +40,7 @@ assign ALUOp= (OpCode==6'b000000)? 2'b10: //R instruction
                (OpCode==6'b101011)? 2'b00: //sw instruction
                (OpCode==6'b000100)? 2'b01: //beq instruction
                (OpCode==6'b001000)? 2'b00: //addi instruction
-               2'bx;
+               2'bxx;
 assign MemWrite= (OpCode==6'b000000)? 1'b0: //R instruction
                (OpCode==6'b100011)? 1'b0: //lw intruction
                (OpCode==6'b101011)? 1'b1: //sw instruction

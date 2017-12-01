@@ -7,7 +7,7 @@ output [31:0] readdata1,readdata2;
 reg [31:0] reg1[0:31];	// the register file storage as a 2d memory array consists from 32 register with each register 32 bits wide
 assign readdata1=reg1[readreg1];  
 assign readdata2=reg1[readreg2];
-always@(negedge clk)
+always@(posedge clk)
 begin
 reg1[0]<=0;
 if (writeenable) //selecting whether to read or write using if else and "writeenable" 
