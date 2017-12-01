@@ -2,68 +2,62 @@ module ControlUnit (clk,OpCode, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWri
 
 input wire [5:0] OpCode;
 input clk;
-output reg RegDst;
-output reg Branch;
-output reg MemRead;
-output reg MemtoReg;
-output reg [1:0] ALUOp;
-output reg MemWrite;
-output reg ALUSrc;
-output reg RegWrite;
-always@(posedge clk)
-begin
-//R instruction
-if (OpCode==6'b000000)
-begin
-RegDst<=1'b1;
-Branch<=1'b0;
-MemRead<=1'b0;
-MemtoReg<=1'b0;
-ALUOp<=2'b10;
-MemWrite<=1'b0;
-ALUSrc<=1'b0;
-RegWrite<=1'b1;
-end
+output wire RegDst;
+output wire Branch;
+output wire MemRead;
+output wire MemtoReg;
+output wire [1:0] ALUOp;
+output wire MemWrite;
+output wire ALUSrc;
+output wire RegWrite;
 
-//lw instruction
-if (OpCode==6'b100011)
-begin
- RegDst<=1'b0;
- Branch<=1'b0;
- MemRead<=1'b1;
- MemtoReg<=1'b1;
- ALUOp<=2'b00;
- MemWrite<=1'b0;
- ALUSrc<=1'b1;
- RegWrite<=1'b1;
-end
+assign RegDst= (OpCode==6'b000000)? 1'b1: //R instruction
+               (OpCode==6'b100011)? 1'b0: //lw intruction
+               (OpCode==6'b101011)? 1'bx: //sw instruction
+               (OpCode==6'b000100)? 1'bx: //beq instruction
+               (OpCode==6'b001000)? 1'b0: //addi instruction
+               1'bx;
+assign Branch= (OpCode==6'b000000)? 1'b0: //R instruction
+               (OpCode==6'b100011)? 1'b0: //lw intruction
+               (OpCode==6'b101011)? 1'b0: //sw instruction
+               (OpCode==6'b000100)? 1'b1: //beq instruction
+               (OpCode==6'b001000)? 1'b0: //addi instruction
+               1'bx;
+assign MemRead= (OpCode==6'b000000)? 1'b0: //R instruction
+               (OpCode==6'b100011)? 1'b1: //lw intruction
+               (OpCode==6'b101011)? 1'b0: //sw instruction
+               (OpCode==6'b000100)? 1'b0: //beq instruction
+               (OpCode==6'b001000)? 1'b0: //addi instruction
+               1'bx;
+assign MemtoReg= (OpCode==6'b000000)? 1'b0: //R instruction
+               (OpCode==6'b100011)? 1'b1: //lw intruction
+               (OpCode==6'b101011)? 1'bx: //sw instruction
+               (OpCode==6'b000100)? 1'bx: //beq instruction
+               (OpCode==6'b001000)? 1'b0: //addi instruction
+               1'bx;
+assign ALUOp= (OpCode==6'b000000)? 2'b10: //R instruction
+               (OpCode==6'b100011)? 2'b00: //lw intruction
+               (OpCode==6'b101011)? 2'b00: //sw instruction
+               (OpCode==6'b000100)? 2'b01: //beq instruction
+               (OpCode==6'b001000)? 2'b00: //addi instruction
+               2'bx;
+assign MemWrite= (OpCode==6'b000000)? 1'b0: //R instruction
+               (OpCode==6'b100011)? 1'b0: //lw intruction
+               (OpCode==6'b101011)? 1'b1: //sw instruction
+               (OpCode==6'b000100)? 1'b0: //beq instruction
+               (OpCode==6'b001000)? 1'b0: //addi instruction
+               1'bx;
+assign ALUSrc= (OpCode==6'b000000)? 1'b0: //R instruction
+               (OpCode==6'b100011)? 1'b1: //lw intruction
+               (OpCode==6'b101011)? 1'b1: //sw instruction
+               (OpCode==6'b000100)? 1'b0: //beq instruction
+               (OpCode==6'b001000)? 1'b1: //addi instruction
+               1'bx;
+assign RegWrite= (OpCode==6'b000000)? 1'b1: //R instruction
+               (OpCode==6'b100011)? 1'b1: //lw intruction
+               (OpCode==6'b101011)? 1'b0: //sw instruction
+               (OpCode==6'b000100)? 1'b0: //beq instruction
+               (OpCode==6'b001000)? 1'b1: //addi instruction
+               1'bx;
 
-//sw instruction
-if (OpCode==6'b101011)
-begin
- RegDst<=1'bx;
- Branch<=1'b0;
- MemRead<=1'b0;
- MemtoReg<=1'bx;
- ALUOp<=2'b00;
- MemWrite<=1'b1;
- ALUSrc<=1'b1;
- RegWrite<=1'b0;
-end
-
-//beq instruction
-if (OpCode==6'b000100)
-begin
- RegDst<=1'bx;
- Branch<=1'b1;
- MemRead<=1'b0;
- MemtoReg<=1'bx;
- ALUOp<=2'b01;
- MemWrite<=1'b0;
- ALUSrc<=1'b0;
- RegWrite<=1'b0;
-end
-end
 endmodule
-
-

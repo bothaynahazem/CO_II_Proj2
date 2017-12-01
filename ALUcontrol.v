@@ -11,8 +11,8 @@ output wire [3:0] OpCode; //4 bits input (wire) to the ALU
 //sub ---> beq
 //funct ---> R-format
 
-assign OpCode= (ALUOp==2'b00)?4'b0000: 
-(ALUOp==2'b01)?4'b0001:
+assign OpCode= (ALUOp==2'b00)?4'b0010: 
+(ALUOp==2'b01)?4'b0110:
 (ALUOp==2'b10)&&(Instruction==6'b100000)?4'b0010: 
 (ALUOp==2'b10)&&(Instruction==6'b100010)?4'b0110:
 (ALUOp==2'b10)&&(Instruction==6'b100100)?4'b0000:
