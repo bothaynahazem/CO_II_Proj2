@@ -1,11 +1,8 @@
-module IMem(input clk,input[31:0] pc,output reg[31:0] instruction);
+module IMem(input clk,input[31:0] pcaddress,output [31:0] instruction);
 reg [31:0] IMemory[0:1023];
 initial 
 begin
 $readmemb("input.txt",IMemory);
 end
-always@(posedge clk)
-begin
-instruction<=IMemory[pc>>2];
-end
+assign instruction=IMemory[pcaddress>>2];
 endmodule

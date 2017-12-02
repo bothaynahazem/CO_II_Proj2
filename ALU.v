@@ -78,7 +78,7 @@ assign Result =(OpCode==4'b0010)?(A+B):
 ((OpCode==4'd5))? (A>>Shift_amt):
 (32'd0);
 
-assign zero_flag = (OpCode==4'b0001)&&(A-B==0)? 1:0;
+assign zero_flag = (OpCode==4'b0110)&&(A-B==0)? 1:0;
 
 /*inline cdn for overflow in case of addition(signed & unsigned) or subtraction (signed only)*/
 /*assign Overflow = ((Mode==1'b1)&&(OpCode==4'b0010)&&(A[31]==B[31])&&(Result[31]==~A[31]))? 1'b1:
