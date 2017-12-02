@@ -1,4 +1,3 @@
-`timescale 100s/1s
 module clk( myclk);
 output reg myclk=1;
 always
